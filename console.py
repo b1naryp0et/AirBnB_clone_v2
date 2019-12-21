@@ -17,8 +17,15 @@ class HBNBCommand(cmd.Cmd):
     """this class is entry point of the command interpreter
     """
     prompt = "(hbnb) "
-    all_classes = {"BaseModel", "User", "State", "City",
-                   "Amenity", "Place", "Review"}
+    all_classes = {
+        "BaseModel": BaseModel,
+        "User": User,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Place": Place,
+        "Review": Review,
+    }
 
     def emptyline(self):
         """Ignores empty spaces"""
@@ -130,21 +137,18 @@ class HBNBCommand(cmd.Cmd):
         Exceptions:
             NameError: when there is no object taht has the name
         """
-        objects = storage.all()
-        my_list = []
-        if not line:
+
+        try:
+            if not line:
+                objects = storage.all()
+            else:
+                args = line.split(" ")
+                if args[0] not in self.all_classes:
+                    raise NameError()
+                objects = storage.all(self.all_classes[args[0]])
+            my_list = []
             for key in objects:
                 my_list.append(objects[key])
-            print(my_list)
-            return
-        try:
-            args = line.split(" ")
-            if args[0] not in self.all_classes:
-                raise NameError()
-            for key in objects:
-                name = key.split('.')
-                if name[0] == args[0]:
-                    my_list.append(objects[key])
             print(my_list)
         except NameError:
             print("** class doesn't exist **")

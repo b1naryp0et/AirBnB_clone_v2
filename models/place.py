@@ -4,6 +4,7 @@ from models.base_model import BaseModel, Base
 from sqlalchemy import Integer, Float, String, Column, ForeignKey
 from sqlalchemy.orm import relationship
 from models.city import City
+from models.user import User
 
 
 class Place(BaseModel, Base):
@@ -23,7 +24,7 @@ class Place(BaseModel, Base):
     """
     __tablename__ = "place"
     city_id = Column(String(60), ForeignKey(City.id), nullable=False)
-    user_id = ""
+    user_id = Column(String(60), ForeignKey(User.id), nullable=False)
     name = ""
     description = ""
     number_rooms = 0
