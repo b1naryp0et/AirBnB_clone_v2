@@ -40,20 +40,25 @@ class HBNBCommand(cmd.Cmd):
         """
         try:
             if not line:
-                raise SyntaxError()
+                raise SyntaxError("** class name missing **")
             my_list = line.split(" ")
             obj = eval("{}()".format(my_list[0]))
-
+            
             for article in my_list[1:]:
                 gen_list = article.split("=")
-                gen_list[1] = gen_list[1].strip('"')
-                gen_list[1] = gen_list[1].replace('_', ' ')
-                setattr(obj, gen_list[0], gen_list[1])
+                if len(gen_list) == 2:
+                    gen_list[1] = gen_list[1].strip('"')
+                    gen_list[1] = gen_list[1].replace('_', ' ')
+                    setattr(obj, gen_list[0], gen_list[1])
+                else:
+                    raise SyntaxError(
+                        "** Expected name=value, got: " + article
+                    )
 
             obj.save()
             print("{}".format(obj.id))
-        except SyntaxError:
-            print("** class name missing **")
+        except SyntaxError as e:
+            print(e)
         except NameError:
             print("** class doesn't exist **")
 
