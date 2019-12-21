@@ -3,9 +3,10 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Integer, Float, String, Column, ForeignKey
 from sqlalchemy.orm import relationship
+from models.city import City
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """This is the class for Place
     Attributes:
         city_id: city id
@@ -20,7 +21,8 @@ class Place(BaseModel):
         longitude: longitude in float
         amenity_ids: list of Amenity ids
     """
-    city_id = ""
+    __tablename__ = "place"
+    city_id = Column(String(60), ForeignKey(City.id), nullable=False)
     user_id = ""
     name = ""
     description = ""
