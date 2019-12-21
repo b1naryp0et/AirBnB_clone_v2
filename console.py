@@ -43,7 +43,7 @@ class HBNBCommand(cmd.Cmd):
                 raise SyntaxError("** class name missing **")
             my_list = line.split(" ")
             obj = eval("{}()".format(my_list[0]))
-            
+
             for article in my_list[1:]:
                 gen_list = article.split("=")
                 if len(gen_list) == 2:
