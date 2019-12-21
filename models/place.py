@@ -1,11 +1,13 @@
 #!/usr/bin/python3
 """This is the place class"""
 from models.base_model import BaseModel, Base
-from sqlalchemy import Integer, Float, String, Columns, ForeignKey
+from sqlalchemy import Integer, Float, String, Column, ForeignKey
 from sqlalchemy.orm import relationship
+from models.city import City
+from models.user import User
 
 
-class Place(BaseModel):
+class Place(BaseModel, Base):
     """This is the class for Place
     Attributes:
         city_id: city id
@@ -20,6 +22,7 @@ class Place(BaseModel):
         longitude: longitude in float
         amenity_ids: list of Amenity ids
     """
+<<<<<<< HEAD
     __tablename__ = 'places'
     if os.getenv('HBNB_TYPE_STORAGE') == 'db':
         city_id = Column(String(60), ForeignKey('cities.id'), nullable=False)
@@ -46,3 +49,17 @@ class Place(BaseModel):
         latitude = 0.0
         longitude = 0.0
         amenity_ids = []
+=======
+    __tablename__ = "place"
+    city_id = Column(String(60), ForeignKey(City.id), nullable=False)
+    user_id = Column(String(60), ForeignKey(User.id), nullable=False)
+    name = ""
+    description = ""
+    number_rooms = 0
+    number_bathrooms = 0
+    max_guest = 0
+    price_by_night = 0
+    latitude = 0.0
+    longitude = 0.0
+    amenity_ids = []
+>>>>>>> 279037bc33e93bc4aa70bd8cdbed15a4023512b6
