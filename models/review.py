@@ -10,7 +10,7 @@ class Review(BaseModel, Base):
         user_id: user id
         text: review description
     """
-    __tablename__ = "review"
+    __tablename__ = "reviews"
     place_id = ""
     user_id = ""
     text = ""

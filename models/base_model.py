@@ -72,10 +72,5 @@ class BaseModel:
         return my_dict
 
     def delete(self):
-        """ TODO:
-        Add a new public instance method: def delete(self):
-        to delete the current instance from the storage
-        (models.storage) by calling the method delete
-        ???
-        """
-        pass
+        """ delete """
+        models.storage.delete()

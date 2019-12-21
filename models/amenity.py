@@ -8,5 +8,5 @@ class Amenity(BaseModel, Base):
     Attributes:
         name: input name
     """
-    __tablename__ = "amenity"
+    __tablename__ = "amenities"
     name = ""
