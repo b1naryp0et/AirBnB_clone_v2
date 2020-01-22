@@ -24,7 +24,7 @@ def c_deez(text):
 
 
 @app.route('/python/', defaults={"text": "is cool"})
-@app.route('/python/<text>')
+@app.route('/python/<text>', strict_slashes=False)
 def py_text(text):
     """ Returns python, then text string """
     return 'Python %s' % escape(text.replace("_", " "))
